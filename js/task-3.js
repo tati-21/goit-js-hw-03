@@ -1,26 +1,27 @@
-// todo
-// todo Задача 3. Перевірка спаму
+// todo Задача 3. Фільтрація масиву чисел
 
-// todo Виконуй це завдання у файлі task-3.js
+// todo Напиши функцію filterArray(numbers, value), яка приймає масив чисел (numbers) та значення (value) як параметри. Функція повинна повертати новий масив лише тих чисел із масиву numbers, які більші за значення value.
 
-// todo Функція checkForSpam(message) приймає рядок (параметр message), перевіряє його на вміст заборонених слів spam і sale, і повертає результат перевірки. Слова в рядку параметра message можуть бути в довільному регістрі, наприклад SPAM або sAlE.
+// * Усередині функції:
 
-// todo Доповни код функції таким чином, що:
+// todo Створи порожній масив, у який будеш додавати підходящі числа.
+// todo Використай цикл для ітерації кожного елемента масиву numbers.
+// todo Використовуй умовний оператор if усередині циклу для перевірки кожного елемента и додавання до свого масиву.
+// todo Поверни свій новий масив з підходящими числами як результат.
 
-// todo Якщо знайдено заборонене слово (spam або sale), то функція повертає буль true
-// todo Якщо в рядку відсутні заборонені слова, функція повертає буль false
+function filterArray(numbers, value) {
+  const newCorrectArray = [];
 
-function checkForSpam(message) {
-  const normalizedMessage = message.toLowerCase();
-  return (
-    normalizedMessage.includes("spam") || normalizedMessage.includes("sale")
-  );
+  for (const number of numbers) {
+    if (number > value) {
+      newCorrectArray.push(number);
+    }
+  }
+  return newCorrectArray;
 }
 
-console.log(checkForSpam("Latest technology news")); // false
-console.log(checkForSpam("JavaScript weekly newsletter")); // false
-console.log(checkForSpam("Get best sale offers now!")); // true
-console.log(checkForSpam("Amazing SalE, only tonight!")); // true
-console.log(checkForSpam("Trust me, this is not a spam message")); // true
-console.log(checkForSpam("Get rid of sPaM emails. Our book in on sale!")); // true
-console.log(checkForSpam("[SPAM] How to earn fast money?")); // true
+console.log(filterArray([1, 2, 3, 4, 5], 3)); // [4, 5]
+console.log(filterArray([1, 2, 3, 4, 5], 4)); // [5]
+console.log(filterArray([1, 2, 3, 4, 5], 5)); // []
+console.log(filterArray([12, 24, 8, 41, 76], 38)); // [41, 76]
+console.log(filterArray([12, 24, 8, 41, 76], 20)); // [24, 41, 76]

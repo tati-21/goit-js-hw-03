@@ -1,29 +1,29 @@
-// todo Задача 1. Замовлення дроїдів
+// todo Задача 1. Генератор slug
 
-// todo Станція з продажу ремонтних дроїдів готова до запуску, залишилося написати програмне забезпечення для відділу продажів. Оголоси функцію makeTransaction(quantity, pricePerDroid, customerCredits), яка складає та повертає повідомлення про купівлю ремонтних дроїдів.
+// Перш, ніж розв’язувати задачу, давай визначимося із новим терміном!
+// Термін slug — це зрозумілий людині унікальний ідентифікатор, який використовується у веб розробці для створення читабельних URL-адрес.
+// Наприклад, замість того, щоб користувач побачив в адресному рядку mysite.com/posts/1q8fh74tx, можна зробити slug із назви статті. У результаті адреса буде приємнішою для сприйняття: mysite.com/posts/arrays-for-beginners.
+// Slug — це завжди рядок у нижньому регістрі, слова якого розділені тире.
+// З цим розібралися? А тепер давай нарешті виконувати задачу!
 
-// todo Вона оголошує три параметри, значення яких будуть задаватися під час її виклику:
+// todo Напиши функцію slugify(title), яка приймає заголовок статті, параметр title і повертає slug, створений із цього рядка.
+// todo Значенням параметра title будуть рядки, слова яких розділені лише пробілами.
+// todo Усі символи slug повинні бути в нижньому регістрі.
+// todo Усі слова slug повинні бути розділені тире.
 
-// todo quantity — кількість замовлених дроїдів
-// todo pricePerDroid — ціна одного дроїда
-// todo customerCredits — сума коштів на рахунку клієнта
+function slugify(title) {
+  const lowCaseTitle = title.toLowerCase();
+  //   console.log(lowCaseTitle);
 
-// todo Доповни функцію таким чином:
+  const cropedTitle = lowCaseTitle.split(" ");
+  //   console.log(cropedTitle);
 
-// todo Оголоси змінну для зберігання загальної суми замовлення (загальна вартість усіх замовлених дроїдів) і задай їй вираз розрахунку цієї суми.
-// todo Додай перевірку, чи зможе клієнт оплатити замовлення: якщо сума до сплати перевищує кількість кредитів на рахунку клієнта, функція має повертати рядок "Insufficient funds!" в іншому випадку функція має повертати рядок "You ordered <quantity> droids worth <totalPrice> credits!", де <quantity> це кількість замовлених дроїдів, а <totalPrice> це їх загальна вартість.
+  const slugTitle = cropedTitle.join("-");
 
-function makeTransaction(quantity, pricePerDroid, customerCredits) {
-  const totalPrice = quantity * pricePerDroid;
-  if (totalPrice <= customerCredits) {
-    return `You ordered ${quantity} droids worth ${totalPrice} credits!`;
-  } else {
-    return "Insufficient funds!";
-  }
+  return slugTitle;
 }
 
-console.log(makeTransaction(5, 3000, 23000)); // "You ordered 5 droids worth 15000 credits!"
-console.log(makeTransaction(3, 1000, 15000)); // "You ordered 3 droids worth 3000 credits!"
-console.log(makeTransaction(10, 5000, 8000)); // "Insufficient funds!"
-console.log(makeTransaction(8, 2000, 10000)); // "Insufficient funds!"
-console.log(makeTransaction(10, 500, 5000)); // "You ordered 10 droids worth 5000 credits!"
+console.log(slugify("Arrays for beginners")); // "arrays-for-beginners"
+console.log(slugify("English for developer")); // "english-for-developer"
+console.log(slugify("Ten secrets of JavaScript")); // "ten-secrets-of-javascript"
+console.log(slugify("How to become a JUNIOR developer in TWO WEEKS")); // "how-to-become-a-junior-developer-in-two-weeks"
